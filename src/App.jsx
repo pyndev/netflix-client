@@ -1,18 +1,23 @@
-import './App.scss';
-import Home from './pages/home/Home';
-import Watch from './pages/watch/Watch';
-import Register from './pages/register/Register';
-import Login from './pages/login/Login';
-import { render } from "react-dom";
+import "./app.scss";
+import Home from "./pages/home/Home";
+import Register from "./pages/register/Register";
+import Watch from "./pages/watch/Watch";
+import Login from "./pages/login/Login";
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 
+import { render } from "react-dom";
+// import { useContext } from "react";
+// import { AuthContext } from "./authContext/AuthContext";
+
 const App = () => {
+  // const { user } = useContext(AuthContext);
   const rootElement = document.getElementById("root");
-  const user = true;
+  const  user = true;
+
   render (
     <BrowserRouter>
     <Routes>
@@ -32,6 +37,6 @@ const App = () => {
   </BrowserRouter>,
   rootElement
   );
-}
+};
 
 export default App;

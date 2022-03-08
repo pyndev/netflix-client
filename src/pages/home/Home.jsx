@@ -20,7 +20,6 @@ const Home = ({ type }) => {
             headers: {
               token:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjZlNTAxNjc5MGJkNmIzY2JiMzkwNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjczNjI4OCwiZXhwIjoxNjQ3MTY4Mjg4fQ.uYTK2VbnfrJ1c5t1KkUa7UX3S60HZ8iw4a1JTsf_lcY",
-
               // "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
             },
           }

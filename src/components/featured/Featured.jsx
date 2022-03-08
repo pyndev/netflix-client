@@ -1,8 +1,30 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./featured.scss";
 
 export default function Featured({type}) {
+  const [content, setContent] = useState({});
+
+  useEffect(()=>{
+    const getRandomContent = async ()=>{
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`,
+        {
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjZlNTAxNjc5MGJkNmIzY2JiMzkwNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjczNjI4OCwiZXhwIjoxNjQ3MTY4Mjg4fQ.uYTK2VbnfrJ1c5t1KkUa7UX3S60HZ8iw4a1JTsf_lcY",
+            // "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        });
+        setContent(res.data[0]);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getRandomContent();
+  },[type]);
+
   return (
     <div className="featured">
         {type && (
@@ -26,16 +48,12 @@ export default function Featured({type}) {
                 </select>
             </div>
         )}
-      <img src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"></img>
+      <img src={content.img} alt="" />
 
       <div className="info">
-        <img src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1"></img>
+        <img src={content.imgTitle} alt="" />
         <span className="desc">
-          Incididunt do est velit ullamco elit ut cupidatat excepteur. Nulla
-          incididunt fugiat aute id amet. Minim non minim deserunt adipisicing
-          non Lorem tempor do ipsum irure dolor nulla ea ea. Et anim sit non
-          nisi esse aliqua deserunt amet laboris anim. Non commodo laborum
-          consectetur commodo elit veniam minim.
+          {content.desc}
         </span>
         <div className="buttons">
           <button className="play">
